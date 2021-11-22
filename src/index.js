@@ -1,13 +1,24 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import './index.css';
-import App from './App';
+import PokemonDetails from './PokemonDetails';
+import PokemonList from './PokemonList';
+import PokemonSearch from './PokemonSearch';
 import reportWebVitals from './reportWebVitals';
 
+
+
 ReactDOM.render(
-  <React.StrictMode>
-    <App />
-  </React.StrictMode>,
+  <Router>
+    <Routes>
+
+      <Route path="/" element={<PokemonList />} />
+      <Route path="/pokemonSearch" element={<PokemonSearch />} />
+      <Route path="/pokemon/:pokemonName" element={<PokemonDetails />} />
+    </Routes>
+  </Router>
+,
   document.getElementById('root')
 );
 
