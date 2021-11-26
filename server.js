@@ -18,7 +18,7 @@ app.use(cors());
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
-saq`z1  `
+
 app.use('/api/pokemon', pokemon);  
 // Note that it is common practice got backend APIs in Node to start with the api prefix
 // to distinguish them from frontend routes 
