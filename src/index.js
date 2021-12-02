@@ -6,14 +6,16 @@ import PokemonDetails from './PokemonDetails';
 import PokemonList from './PokemonList';
 import PokemonSearch from './PokemonSearch';
 import reportWebVitals from './reportWebVitals';
+import Register from './Register';
 
 
 
 ReactDOM.render(
   <Router>
     <Routes>
-      <Route path="/" element={<PokemonList />} />
-      <Route path="/pokemonSearch" element={<PokemonSearch />} />
+      <Route path="/" element={<Register />} />
+      <Route path="/list" element={<PokemonList />} />
+      <Route path="/pokemonSearch/:searchQuery" element={<PokemonSearch />} />
       <Route path="/pokemon/:pokemonName" element={<PokemonDetails />} />
     </Routes>
   </Router>
