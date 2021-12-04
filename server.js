@@ -10,7 +10,7 @@ const session = require('express-session')
 const MongoStore = require('connect-mongo');
 
 //Setup MongoDB Connection
-const mongoString = 'mongodb://127.0.0.1/pokemon_app'
+const mongoString = 'mongodb+srv://bomendez:R0b0tCh1ck3n@webdev.08eb6.mongodb.net/pokemon_app?retryWrites=true&w=majority'
 mongoose.connect(mongoString, { useNewUrlParser: true })
 
 const mongoDB = mongoose.connection;
@@ -19,7 +19,6 @@ mongoDB.on('error', console.error.bind(console, 'Error connecting to MongoDB:'))
 
 const app = express();
 
-// app.use(session({secret: "SUPER_DUPER_SECRET"}));
 app.use(session({secret: "SUPER_DUPER_SECRET",
     store: MongoStore.create({ mongoUrl: mongoString }),
 }));
@@ -41,14 +40,12 @@ app.get('/banana', (req, res) => {
     res.send('NOT BANANA!');
 });
 
-// https://www.amazon.com/gp/css/order-history
 
 app.use(express.static(path.join(__dirname, 'build')));
 
 app.get('*', function (req, res) {
     console.log("received request");
     res.sendFile(path.join(__dirname, "build", "index.html"));
-    // res.sendFile(path.join(__dirname, 'build', 'index.html'));
 });
   
 
