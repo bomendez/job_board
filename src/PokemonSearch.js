@@ -4,16 +4,14 @@ import axios, { Axios } from 'axios';
 function App() {
   const [formInput, setFormInput] = useState('');
   const [pokemon, setPokemon] = useState({
-    name: 'No pokemon selected', health: -1,
+    name: 'No job selected', health: -1,
   })
   const [errorMsg, setError] = useState(null);
 
   function onSearchButtonClick() {
-    // const pokemon = axios.get('...')
-    // console.log(pokemon);
     
     if (!formInput) {
-      setError("You must type in a Pokemon name.");
+      setError("You must type in keyword.");
       return;
     }
 
@@ -21,7 +19,7 @@ function App() {
     axios.get('http://localhost:8000/api/pokemon/find/' + formInput)
       .then(response => setPokemon(response.data))
       .catch(error => setPokemon({
-        name: "No pokemon found",
+        name: "No matching jobs found",
         health: null, 
       }));
     console.log("hello, there");
@@ -39,13 +37,13 @@ function App() {
       
       }} />
       <button onClick={onSearchButtonClick}>
-        Search for Pokemon
+        Search Jobs
       </button>
       <div>
-        Pokemon Name: {pokemon.name}
+        Job Title: {pokemon.title}
       </div>
       <div>
-        Pokemon Health: {pokemon.health}
+        Description: {pokemon.description}
       </div>
 
     </div>

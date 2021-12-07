@@ -1,18 +1,18 @@
 const mongoose = require("mongoose")
-const PokemonSchema = require('../schema/Pokemon.Schema').PokemonSchema
+const JobSchema = require('../schema/Jobs.Schema').JobSchema
 
-const PokemonModel = mongoose.model("Pokemon", PokemonSchema);
+const PokemonModel = mongoose.model("Jobs", JobSchema);
 
-function insertPokemon(pokemon) {
-    return PokemonModel.create(pokemon);
+function insertPokemon(job) {
+    return PokemonModel.create(job);
 }
 
 function getAllPokemon() {
     return PokemonModel.find().exec();
 }
 
-function findPokemonByName(name) {
-    return PokemonModel.find({name: name}).exec();
+function findPokemonByName(title) {
+    return PokemonModel.find({title: title}).exec();
 }
 
 function findPokemonById(id) {

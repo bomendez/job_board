@@ -7,16 +7,18 @@ import PokemonList from './PokemonList';
 import PokemonSearch from './PokemonSearch';
 import reportWebVitals from './reportWebVitals';
 import Register from './Register';
+import Landing from './Landing';
 
 
 
 ReactDOM.render(
   <Router>
     <Routes>
-      <Route path="/" element={<Register />} />
+      <Route path="/" element={<Landing />} />
+      <Route path="/register" element={<Register />} />
       <Route path="/list" element={<PokemonList />} />
       <Route path="/pokemonSearch/:searchQuery" element={<PokemonSearch />} />
-      <Route path="/pokemon/:pokemonName" element={<PokemonDetails />} />
+      <Route path="/pokemon/:pokemonId" element={<PokemonDetails />} />
     </Routes>
   </Router>
 ,

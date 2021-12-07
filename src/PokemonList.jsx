@@ -1,6 +1,7 @@
 import axios from 'axios';
 import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
+import NavBar from './navbar';
 
 export default function PokemonSearchBar() {
     const [allPokemon, setAllPokemon] = useState([]);
@@ -19,13 +20,14 @@ export default function PokemonSearchBar() {
     const pokemonListComponent = allPokemon.map(pokemon => {
         return (<>
         <p></p>
-        <Link to={"pokemon/" + pokemon.name}>{pokemon.name}</Link>
+        <Link to={"pokemon/" + pokemon.title}>{pokemon.title}</Link>
         </>)
     })
 
     return (
         <div>
-            <h1>These are all my Pokemon</h1>
+            <NavBar />
+            <h1>All Jobs:</h1>
             {pokemonListComponent}
         </div>
     )

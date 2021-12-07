@@ -2,15 +2,14 @@ import axios from 'axios';
 import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router';
 
-
 export default function() {
-    const pokemonName = useParams().pokemonName;
+    const pokemonId = useParams().pokemonId;
 
     function findPokemonDetails() {
 
-        axios.get('http://localhost:8000/api/pokemon/find/' + pokemonName)
+        axios.get('http://localhost:8000/api/pokemon/find/' + pokemonId)
             .then(response => setPokemon(response.data))
-            .then(error => console.log("Could not find Pokemon"));
+            .catch(error => console.log("Could not find job"));
 
     }
 
@@ -21,10 +20,25 @@ export default function() {
 
     const pokemonComponent = pokemon ? 
         (<><div>
-            Pokemon Name: {pokemon.name}
+            Job Title: {pokemon.title}
         </div>
         <div>
-            Pokemon Health: {pokemon.health} 
+            Company Name: {pokemon.companyName}
+        </div>
+        <div>
+            Location: {pokemon.location}
+        </div>
+        <div>
+            Description: {pokemon.description}
+        </div>
+        <div>
+            Email: <a href="{}">{pokemon.email}</a>
+        </div>
+        <div>
+            Posting Date: {pokemon.postingDate}
+        </div>
+        <div>
+            {pokemon.website ? "Company Website:" + pokemon.website : "none"}
         </div></>) :
         (<div> No Pokemon found </div>);
 
