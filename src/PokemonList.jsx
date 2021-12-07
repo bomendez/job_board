@@ -20,15 +20,17 @@ export default function PokemonSearchBar() {
     const pokemonListComponent = allPokemon.map(pokemon => {
         return (<>
         <p></p>
-        <Link to={"pokemon/" + pokemon.title}>{pokemon.title}</Link>
+        <Link to={"../pokemon/" + pokemon._id.toString()}>{pokemon.title}</Link>
         </>)
     })
 
     return (
-        <div>
+        <div class="d-flex h-100 text-center text-white bg-dark">
+            <div class="d-flex h-100 p-3 mx-auto flex-column">
             <NavBar />
             <h1>All Jobs:</h1>
             {pokemonListComponent}
+            </div>
         </div>
     )
 }

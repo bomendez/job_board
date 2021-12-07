@@ -14,23 +14,12 @@ router.get('/find/:pokemonId', function(request, response) {
   return PokemonAccessor.findPokemonById(request.params.pokemonId)
     .then(pokemonResponse => response.status(200).send(pokemonResponse))
     .catch(error => response.status(400).send(error))
-  // // const pokemonQuery = req.query.q;
-  // const pokemonQuery = req.params.pokemonName;
-  // // const foundPokemon = pokemons.find((pokemon) => pokemon.name === pokemonQuery)
-  // let foundPokemon = null;
-  
-  // for (let pokemon of pokemons) {
-  //   if (pokemon.name === pokemonQuery) {
-  //     console.log(pokemon)
-  //     foundPokemon = pokemon
-  //   }
-  // } 
-  // if (!foundPokemon) {
-  //   return res.status(404).send("No pokemon found!");
-  // }
+});
 
-  // res.send(foundPokemon);
-  
+router.get('/title/:title', function(request, response) {
+  return PokemonAccessor.findPokemonByName(request.params.title)
+    .then(pokemonResponse => response.status(200).send(pokemonResponse))
+    .catch(error => response.status(400).send(error))
 });
 
 router.post('/create', (request, response) => {
@@ -65,7 +54,7 @@ router.post('/create', (request, response) => {
 })
 
 router.get('/about', function(req, res) {
-  res.send('Food is the best');
+  res.send('Job Board is a place to view and manage jobs');
 });
 
 module.exports = router; // <== Look at our new friend, module.exports!

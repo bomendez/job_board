@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import axios, { Axios } from 'axios';
+import './App.css';
 
 function App() {
   const [formInput, setFormInput] = useState('');
@@ -16,13 +17,13 @@ function App() {
     }
 
 
-    axios.get('http://localhost:8000/api/pokemon/find/' + formInput)
+    axios.get('http://localhost:8000/api/pokemon/title/' + formInput)
       .then(response => setPokemon(response.data))
       .catch(error => setPokemon({
         name: "No matching jobs found",
         health: null, 
       }));
-    console.log("hello, there");
+    console.log("no match with given criteria");
 
     // doSomething();
   }
@@ -30,21 +31,23 @@ function App() {
   return (
     <div>
       {errorMsg}
-      <input type='text' value={formInput}
+      <input class="form-control mr-sm-2" type="search" 
+      placeholder="Search" aria-label="Search"  value={formInput}
       onChange={(e) => {
         setError(null);
         setFormInput(e.target.value)
       
       }} />
-      <button onClick={onSearchButtonClick}>
+      <button class="btn btn-outline-success my-2 my-sm-0"
+      onClick={onSearchButtonClick}>
         Search Jobs
       </button>
-      <div>
+      {/* <div>
         Job Title: {pokemon.title}
       </div>
       <div>
         Description: {pokemon.description}
-      </div>
+      </div> */}
 
     </div>
  

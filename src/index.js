@@ -8,17 +8,18 @@ import PokemonSearch from './PokemonSearch';
 import reportWebVitals from './reportWebVitals';
 import Register from './Register';
 import Landing from './Landing';
+import CreateJob from './CreateJob';
 
 
 
 ReactDOM.render(
   <Router>
     <Routes>
-      <Route path="/" element={<Landing />} />
       <Route path="/register" element={<Register />} />
       <Route path="/list" element={<PokemonList />} />
-      <Route path="/pokemonSearch/:searchQuery" element={<PokemonSearch />} />
       <Route path="/pokemon/:pokemonId" element={<PokemonDetails />} />
+      <Route path="/create" element={<CreateJob />} />
+      <Route path="/" element={<Landing />} />
     </Routes>
   </Router>
 ,
