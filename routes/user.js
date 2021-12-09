@@ -57,12 +57,6 @@ router.post('/authenticate', function(request, response) {
             }
             if (userResponse.password === password) {
 
-                // const payload = {username: username};
-
-                // const token = jwt.sign(payload, "SUPER_DUPER_SECRET", {
-                //     expiresIn: '14d',
-                // });
-
                 request.session.username = username;
 
                 //return response.cookie('huntersCookie', token, {httpOnly: true})
@@ -73,42 +67,7 @@ router.post('/authenticate', function(request, response) {
                 return response.status(404).send("No user found with that password");
             }
         })
-
-
-        //     // user.comparePassword(password, (error, match) => {
-        //         if (match) {
-        //             const payload = {username};
-        //             // JWT is encrypting our payload (which is whatever data we want
-        //             // to carry across sessions: in this case, just the username)
-        //             // into the cookie based on our SECRET
-        //             const token = jwt.sign(payload, process.env.SUPER_SECRET, {
-        //                 expiresIn: '14d' // optional cookie expiration date
-        //             });
-        //             // Here we are setting the cookie on our response obect.  
-        //             // Note that we are returning the username, but that isn't as necessary anymore
-        //             // unless we want to reference that on the frontend
-        //             return res.cookie('token', token, {httpOnly: true})
-        //                 .status(200).send({username});
-        //         }
-        //         return res.status(400).send("The password does not match");
-        //     });
-        // })
         .catch((error) => console.error(`Something went wrong: ${error}`));
-
-
-    // return UserModel.findUserByUsername(username)
-    //     .then((userResponse) => {
-    //         if (!userResponse) {
-    //             return response.status(404).send("No user found with that username");
-    //         }
-    //         if (userResponse.password === password) {
-    //             return response.status(200).send("User is logged in!")
-    //         } else {
-    //             return response.status(404).send("No user found with that password");
-    //         }
-    //     })
-    //     .catch(error => res.status(400).send(error))
-
 
 })
 
