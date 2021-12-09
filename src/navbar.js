@@ -3,9 +3,12 @@ import { Link } from 'react-router-dom';
 import { useNavigate } from 'react-router';
 import App from './PokemonSearch';
 import Logout from './Logout';
+import Login from './Login';
 
 
 function NavBar() {
+
+  // username useState()
 
   return (
   <nav class="navbar navbar-expand-lg navbar-light bg-light justify-content-between">
@@ -37,6 +40,12 @@ function NavBar() {
       <form class="form-inline my-2 my-lg-0">
         <App />
       </form>
+      <button class="btn btn-outline-success my-2 my-sm-0">
+        <Link to={{pathname: "/login"}}>Login</Link>
+      </button>
+      <button class="btn btn-outline-success my-2 my-sm-0">
+        <Link to={{pathname: "/register"}}>Register</Link>
+      </button>
       <li><Logout /></li>
     </div>
   </nav>);

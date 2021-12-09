@@ -38,11 +38,13 @@ export default (props) => {
                     onClick={() => {
                         axios.post('/api/users/authenticate', userData)
                             .then(response => {
-                                navigator("/myJobs")
-                                setLoggedInName(response.data)
+                                console.log("login successful!")
                                 console.log(response)
+                                navigator("/myJobs")
                             })
-                            .catch(error => console.log(error));
+                            .catch(error => {
+                                console.log("catch entered")
+                                console.log(error)});
                     }}
                 >Login</button>
                 <button

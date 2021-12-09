@@ -44,7 +44,7 @@ router.get('/:username', (request, response) => {
 
 router.post('/authenticate', function(request, response) {
     let { username, password } = request.body;
-    password = JSON.stringify(password);
+    // password = JSON.stringify(password);
     console.log(password);
     if (!username || !password) {
         return response.status(422).send('Must include both password and username');
@@ -52,12 +52,14 @@ router.post('/authenticate', function(request, response) {
 
     return UserModel.findUserByUsername(username)
         .then((userResponse) => {
+            console.log("enter then")
             if (!userResponse) {
                 return response.status(404).send("No user found with that username");
             }
             if (userResponse.password === password) {
 
                 request.session.username = username;
+                console.log("findUserByUsername successful")
 
                 //return response.cookie('huntersCookie', token, {httpOnly: true})
                 return response.status(200).send({username});

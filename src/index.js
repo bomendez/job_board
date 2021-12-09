@@ -4,7 +4,6 @@ import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import './index.css';
 import JobDetails from './JobDetails';
 import PokemonList from './PokemonList';
-import PokemonSearch from './PokemonSearch';
 import reportWebVitals from './reportWebVitals';
 import Register from './Register';
 import Landing from './Landing';
@@ -20,6 +19,7 @@ ReactDOM.render(
       <Route path="/pokemon/:pokemonId" element={<JobDetails />} />
       <Route path="/create" element={<CreateJob />} />
       <Route path="/login" element={<Login />} />
+      <Route path="/register" element={<Register />} />
       <Route path="/" element={<Landing />} />
     </Routes>
   </Router>

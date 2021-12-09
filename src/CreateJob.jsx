@@ -16,6 +16,7 @@ export default (props) => {
         website: '',
     });
 
+    // use this to create new component that exists at /myJobs
     function getMyJobs() {
         axios.get('/api/pokemon/myJobs')
             .then(response => setMyJob(response.data))
@@ -25,7 +26,7 @@ export default (props) => {
     function checkLogin() {
         axios.get('/api/users/whoIsLoggedIn')
             .then(() => console.log("Success"))
-            .catch(() => navigate('/'))
+            .catch(() => navigate('/register'))
     }
     useEffect(checkLogin, []);
 
