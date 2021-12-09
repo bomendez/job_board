@@ -1,6 +1,9 @@
 import './App.css';
 import { Link } from 'react-router-dom';
+import { useNavigate } from 'react-router';
 import App from './PokemonSearch';
+import Logout from './Logout';
+
 
 function NavBar() {
 
@@ -30,13 +33,11 @@ function NavBar() {
             <Link class="dropdown-item" to={{pathname: "/create"}}>Create New Job</Link>
           </div>
         </li>
-        <li class="nav-item">
-          <Link class="nav-link" to={{pathname: "/register"}}>Register</Link>
-        </li>
       </ul>
       <form class="form-inline my-2 my-lg-0">
         <App />
       </form>
+      <li><Logout /></li>
     </div>
   </nav>);
   }

@@ -1,11 +1,12 @@
 import axios from 'axios';
-import React, {useState} from 'react';
+import React, {useState, useEffect } from 'react';
+import { useNavigate } from 'react-router';
+
 import NavBar from './navbar';
-import {BrowserRouter as Redirect} from 'react-router-dom';
-import { response } from 'express';
 
 export default (props) => {
-    const [job, setJob] = useState({});
+    const navigate = useNavigate();
+    const [myJobs, setMyJob] = useState([]);
     const [jobData, setJobData] = useState({
         title: '',
         companyName: '',
@@ -15,24 +16,43 @@ export default (props) => {
         website: '',
     });
 
-
-    function convertTitletoId() {
-        axios.get("http://localhost:8000/api/pokemon/" + jobData.title)
-            .then(response => {
-                setJob(response.data)
-            })
-            .catch(error => console.error(error));
-
-        return job._id.toString();
+    function getMyJobs() {
+        axios.get('/api/pokemon/myJobs')
+            .then(response => setMyJob(response.data))
+            .catch(error => console.log(error));
     }
+
+    function checkLogin() {
+        axios.get('/api/users/whoIsLoggedIn')
+            .then(() => console.log("Success"))
+            .catch(() => navigate('/'))
+    }
+    useEffect(checkLogin, []);
+
+    useEffect(getMyJobs, []);
+
+    const jobElement = [];
+    for (let job of myJobs) {
+        jobElement.push(<div>{job.title} - {job.companyName}</div>)
+    }
+
+    // function convertTitletoId() {
+    //     axios.get("/api/pokemon/" + jobData.title)
+    //         .then(response => {
+    //             setMyJob(response.data)
+    //         })
+    //         .catch(error => console.error(error));
+
+    //     return jobData._id.toString();
+    // }
 
     function handleClick() {
         axios.post('/api/pokemon/create', jobData)
-            .then(response => console.log(response))
-            .catch(error => console.log(error));
-
-            // return <Redirect to={{pathname: "/list"}} />
-        // <Redirect to={{pathname: "/pokemon/" + convertTitletoId}} />
+            .then(response => {
+                getMyJobs()
+                console.log(response)
+            })
+            .catch(error => console.error(error));
     }
 
     return(
@@ -90,6 +110,7 @@ export default (props) => {
                 }} />
                 
                 <button onClick={handleClick} >Create New Job</button>
+                {jobElement}
             </div>
         </div>
     )

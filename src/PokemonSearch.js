@@ -17,7 +17,7 @@ function App() {
     }
 
 
-    axios.get('http://localhost:8000/api/pokemon/title/' + formInput)
+    axios.get('/api/pokemon/title/' + formInput)
       .then(response => setPokemon(response.data))
       .catch(error => setPokemon({
         name: "No matching jobs found",

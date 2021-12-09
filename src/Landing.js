@@ -1,6 +1,7 @@
 import NavBar from "./navbar";
 import './App.css';
 import App from "./PokemonSearch";
+import Register from "./Register";
 
 function Landing() {
     return (
@@ -10,10 +11,8 @@ function Landing() {
                 <NavBar />
                 <main class="px-3">
                     <h1>Find your next job</h1>
-                    <p class="lead">Enter a keyword to get started.</p>
-                    <form class="form-inline my-2 my-lg-0">
-                        <App />
-                    </form>
+                    
+                    <Register />
                 </main>
 
                 <footer class="mt-auto text-white-50">

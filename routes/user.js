@@ -16,16 +16,12 @@ router.get('/findAll', function(request, response) {
 
 router.get('/whoIsLoggedIn', auth_middleware, function(request, response) {
     const username = request.session.username;
-
     return response.send(username);
-
 })
 
 router.get('/whoIsAlsoLoggedIn', function(request, response) {
     const username = request.username;
-
     return response.send(username);
-
 })
 
 
@@ -44,14 +40,6 @@ router.get('/:username', (request, response) => {
         response.send(userResponse)
     })
     .catch((error) => response.status(500).send("Issue getting user"))
-
-  // pokemons.push({
-  //   name: name,
-  //   health: health,
-  // })
-
-  // response.send("Success!")
-
 })
 
 router.post('/authenticate', function(request, response) {
@@ -133,13 +121,19 @@ router.post('/', function(req, res) {
         return res.status(422).send("Missing username: " + username + "or password:" + password)
     }
 
-    return UserModel.insertUser({username, password})
+    return UserModel.insertUser({username: username, password: password})
         .then((userResponse) => {
-                return res.status(200).send(userResponse);
+            req.session.username = username;
 
+            return res.status(200).send({username});
         })
-        .catch(error => res.status(400).send(error))
+        .catch(error => res.status(422).send(error))
 
+});
+
+router.post('/logout', function(req, res) {
+    req.session.destroy()
+    return res.send("Ok");
 });
 
 module.exports = router;

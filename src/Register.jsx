@@ -1,21 +1,23 @@
 import axios from 'axios';
 import React, {useState} from 'react';
-import NavBar from './navbar';
+import { useNavigate } from 'react-router';
 
 
 export default (props) => {
+
+    const navigator = useNavigate();
 
     const [userData, setUserData] = useState({
         password: '',
         username: '',
     })
+    const [loggedInName, setLoggedInName] = useState('');
 
 
     return (
         <div class="d-flex h-100 text-center text-white bg-dark">
             <div class="d-flex h-100 p-3 mx-auto flex-column">
-                <NavBar />
-                <h3>Create a new account:</h3>
+                <h3>Login or create a new account</h3>
                 <h5>Username:</h5>
                 <input value={userData.username} onChange={(e) => {
                     const username = e.target.value;
@@ -35,10 +37,23 @@ export default (props) => {
                 <button
                     onClick={() => {
                         axios.post('/api/users', userData)
-                            .then(response => console.log(response))
+                            .then(response => {
+                                navigator("/myJobs")
+                                console.log(response)
+                            })
                             .catch(error => console.log(error));
                     }}
-                >Register My Account</button>
+                >Submit</button>
+                <button
+                 onClick={
+                     () => {
+                         axios.get('/api/users/whoIsLoggedIn')
+                             .then(response => setLoggedInName(response.data))
+                             .catch(error => console.log(error));
+                     }
+                 }
+                 >Who is logged in?</button>
+                {loggedInName && <div>{loggedInName}</div>}
             </div>
         </div>
     );

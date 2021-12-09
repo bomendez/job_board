@@ -1,4 +1,5 @@
 const express = require('express');
+const auth_middleware = require('./auth_middleware');
 const router = express.Router();
 const PokemonAccessor = require('./models/Pokemon.Model');
 
@@ -9,6 +10,12 @@ router.get('/findAll', function(request, response) {
     .then(pokemonResponse => response.status(200).send(pokemonResponse))
     .catch(error => response.status(400).send(error))
 })
+
+router.get('/myJobs', auth_middleware, function(request, response){
+  return PokemonAccessor.findJobByOwner(request.username)
+    .then(pokemonResponse => response.status(200).send(pokemonResponse))
+    .catch(error => response.status(400).send(error))
+});
 
 router.get('/find/:pokemonId', function(request, response) {
   return PokemonAccessor.findPokemonById(request.params.pokemonId)
@@ -22,35 +29,20 @@ router.get('/title/:title', function(request, response) {
     .catch(error => response.status(400).send(error))
 });
 
-router.post('/create', (request, response) => {
-  const {title, companyName, location, description, email} = request.body;
-  if(!title || !companyName || !location || !description || !email) {
+
+router.post('/create', auth_middleware, (request, response) => {
+  const job = request.body;
+
+  if(!job.title || !job.companyName || !job.location || !job.description || !job.email) {
     return response.status(422).send("Missing data");
   }
-  
-  return PokemonAccessor.findPokemonByName(title)
-    .then((pokemonResponse) => {
-      if(pokemonResponse.length) {
-        response.status(402).send("Job with that name already exists")
-      } else {
-        PokemonAccessor.insertPokemon(request.body)
-          .then(pokemonResponse => response.status(200).send(pokemonResponse))
-          .catch(error => response.status(400).send(error))
-        
-      }
 
-    }
-      
-    
-    )
+  // // set the owner of the job as the session user!
+  job.owner = request.session.username;
 
-  // pokemons.push({
-  //   name: name,
-  //   health: health,
-  // })
-
-  // response.send("Success!")
-
+  PokemonAccessor.insertPokemon(request.body)
+     .then(pokemonResponse => response.status(200).send(pokemonResponse))
+     .catch(error => response.status(400).send(error))
 })
 
 router.get('/about', function(req, res) {

@@ -15,7 +15,6 @@ import CreateJob from './CreateJob';
 ReactDOM.render(
   <Router>
     <Routes>
-      <Route path="/register" element={<Register />} />
       <Route path="/list" element={<PokemonList />} />
       <Route path="/pokemon/:pokemonId" element={<PokemonDetails />} />
       <Route path="/create" element={<CreateJob />} />

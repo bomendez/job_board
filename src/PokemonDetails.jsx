@@ -8,7 +8,7 @@ export default function() {
 
     function findPokemonDetails() {
 
-        axios.get('http://localhost:8000/api/pokemon/find/' + pokemonId)
+        axios.get('/api/pokemon/find/' + pokemonId)
             .then(response => setPokemon(response.data))
             .catch(error => console.log("Could not find job"));
 
@@ -22,28 +22,28 @@ export default function() {
     const pokemonComponent = pokemon ? 
         (<div class="d-flex h-100 text-center text-white bg-dark">
             <div class="d-flex h-100 p-3 mx-auto flex-column">
-            <NavBar />
-            <div>
-                Job Title: {pokemon.title}
-            </div>
-            <div>
-                Company Name: {pokemon.companyName}
-            </div>
-            <div>
-                Location: {pokemon.location}
-            </div>
-            <div>
-                Description: {pokemon.description}
-            </div>
-            <div>
-                Email: <a href="{}">{pokemon.email}</a>
-            </div>
-            <div>
-                Posting Date: {pokemon.postingDate}
-            </div>
-            <div>
-                {pokemon.website ? "Company Website:" + pokemon.website : "none"}
-            </div>
+                <NavBar />
+                <div>
+                    Job Title: {pokemon.title}
+                </div>
+                <div>
+                    Company Name: {pokemon.companyName}
+                </div>
+                <div>
+                    Location: {pokemon.location}
+                </div>
+                <div>
+                    Description: {pokemon.description}
+                </div>
+                <div>
+                    Email: <a href="{}">{pokemon.email}</a>
+                </div>
+                <div>
+                    Posting Date: {pokemon.postingDate}
+                </div>
+                <div>
+                    {pokemon.website ? "Company Website: " + pokemon.website : "none"}
+                </div>
             </div>
         </div>) :
         (<div> No Pokemon found </div>);
