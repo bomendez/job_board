@@ -4,8 +4,8 @@ import './App.css';
 
 function App() {
   const [formInput, setFormInput] = useState('');
-  const [pokemon, setPokemon] = useState({
-    name: 'No job selected', health: -1,
+  const [job, setJob] = useState({
+    title: 'No job selected'
   })
   const [errorMsg, setError] = useState(null);
 
@@ -18,10 +18,9 @@ function App() {
 
 
     axios.get('/api/pokemon/title/' + formInput)
-      .then(response => setPokemon(response.data))
-      .catch(error => setPokemon({
-        name: "No matching jobs found",
-        health: null, 
+      .then(response => setJob(response.data))
+      .catch(error => setJob({
+        name: "No matching jobs found"
       }));
     console.log("no match with given criteria");
 

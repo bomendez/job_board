@@ -9,6 +9,7 @@ import Register from './Register';
 import Landing from './Landing';
 import CreateJob from './CreateJob';
 import Login from './Login';
+import MyJobs from './MyJobs';
 
 
 
@@ -20,6 +21,7 @@ ReactDOM.render(
       <Route path="/create" element={<CreateJob />} />
       <Route path="/login" element={<Login />} />
       <Route path="/register" element={<Register />} />
+      <Route path="/myJobs" element={<MyJobs />} />
       <Route path="/" element={<Landing />} />
     </Routes>
   </Router>

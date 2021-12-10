@@ -1,6 +1,7 @@
 import axios from 'axios';
 import React, {useState} from 'react';
 import { useNavigate } from 'react-router';
+import NavBar from './navbar';
 
 
 export default (props) => {
@@ -17,43 +18,48 @@ export default (props) => {
     return (
         <div class="d-flex h-100 text-center text-white bg-dark">
             <div class="d-flex h-100 p-3 mx-auto flex-column">
-                <h3>Login or create a new account</h3>
-                <h5>Username:</h5>
-                <input value={userData.username} onChange={(e) => {
-                    const username = e.target.value;
-                    setUserData({
-                        ...userData,
-                        username: username
-                    })
-                }}/>
-                <h5>Password:</h5>
-                <input value={userData.password} onChange={(e) => {
-                    const password = e.target.value;
-                    setUserData({
-                        ...userData,
-                        password: password
-                    })
-                }} type='password' />
-                <button
-                    onClick={() => {
-                        axios.post('/api/users', userData)
-                            .then(response => {
-                                navigator("/myJobs")
-                                console.log(response)
+                <NavBar />
+                <main class="px-3 mx-auto">
+                    <h3>Login or create a new account</h3>
+                    <form class="form-inline my-2 my-lg-0">
+                        <h5>Username:</h5>
+                        <input value={userData.username} onChange={(e) => {
+                            const username = e.target.value;
+                            setUserData({
+                                ...userData,
+                                username: username
                             })
-                            .catch(error => console.log(error));
-                    }}
-                >Submit</button>
-                <button
-                 onClick={
-                     () => {
-                         axios.get('/api/users/whoIsLoggedIn')
-                             .then(response => setLoggedInName(response.data))
-                             .catch(error => console.log(error));
-                     }
-                 }
-                 >Who is logged in?</button>
-                {loggedInName && <div>{loggedInName}</div>}
+                        }}/>
+                        <h5>Password:</h5>
+                        <input value={userData.password} onChange={(e) => {
+                            const password = e.target.value;
+                            setUserData({
+                                ...userData,
+                                password: password
+                            })
+                        }} type='password' />
+                        <button
+                            onClick={() => {
+                                axios.post('/api/users', userData)
+                                    .then(response => {
+                                        navigator("/myJobs")
+                                        console.log(response)
+                                    })
+                                    .catch(error => console.log(error));
+                            }}
+                        >Submit</button>
+                        <button
+                        onClick={
+                            () => {
+                                axios.get('/api/users/whoIsLoggedIn')
+                                    .then(response => setLoggedInName(response.data))
+                                    .catch(error => console.log(error));
+                            }
+                        }
+                        >Who is logged in?</button>
+                    </form>
+                    {loggedInName && <div>{loggedInName}</div>}
+                </main>
             </div>
         </div>
     );

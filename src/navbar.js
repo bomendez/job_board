@@ -34,12 +34,10 @@ function NavBar() {
           <div class="dropdown-menu" aria-labelledby="navbarDropdown">
             <Link class="dropdown-item" to={{pathname: "/list"}}>All Jobs</Link>
             <Link class="dropdown-item" to={{pathname: "/create"}}>Create New Job</Link>
+            <Link class="dropdown-item" to={{pathname: "/myJobs"}}>My Posted Jobs</Link>
           </div>
         </li>
       </ul>
-      <form class="form-inline my-2 my-lg-0">
-        <App />
-      </form>
       <button class="btn btn-outline-success my-2 my-sm-0">
         <Link to={{pathname: "/login"}}>Login</Link>
       </button>
