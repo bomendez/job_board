@@ -3,7 +3,7 @@ import ReactDOM from 'react-dom';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import './index.css';
 import JobDetails from './JobDetails';
-import PokemonList from './PokemonList';
+import JobList from './JobList';
 import reportWebVitals from './reportWebVitals';
 import Register from './Register';
 import Landing from './Landing';
@@ -16,7 +16,7 @@ import MyJobs from './MyJobs';
 ReactDOM.render(
   <Router>
     <Routes>
-      <Route path="/list" element={<PokemonList />} />
+      <Route path="/list" element={<JobList />} />
       <Route path="/pokemon/:pokemonId" element={<JobDetails />} />
       <Route path="/create" element={<CreateJob />} />
       <Route path="/login" element={<Login />} />

@@ -3,7 +3,7 @@ import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import NavBar from './navbar';
 
-export default function PokemonSearchBar() {
+export default function JobList() {
     const [allJobs, setAllJobs] = useState([]);
 
 
@@ -20,18 +20,18 @@ export default function PokemonSearchBar() {
     const jobListComponent = allJobs.map(job => {
         return (<>
         <p></p>
-                <label class="list-group-item d-flex gap-2 text-center">
+                <label class="list-group-item d-flex gap-2 text-center bg-secondary">
                     <p class="flex-shrink-0 text-black">Favorite</p>
                     <input class="form-check-input flex-shrink-0" type="checkbox" value="" />
-                    <span>
-                        <Link class="text-center" to={"../pokemon/" + job._id.toString()}>{<h5>{job.title}</h5>}</Link>
-                        <small class="d-block text-muted">
+                    <div class="ml-4">
+                        <Link class="text-left text-light" to={"../pokemon/" + job._id.toString()}>{<h5>{job.title}</h5>}</Link>
+                        <small class="d-block text-light text-left">
                             <ul class="navbar-nav mr-auto">
                                 <li>Company Name: {job.companyName}</li>
                                 <li>Description: {job.description}</li>
                             </ul>
                         </small>
-                    </span>
+                    </div>
                 </label>
         </>)
     })

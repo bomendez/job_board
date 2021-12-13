@@ -1,9 +1,6 @@
 import './App.css';
 import { Link } from 'react-router-dom';
-import { useNavigate } from 'react-router';
-import App from './PokemonSearch';
 import Logout from './Logout';
-import Login from './Login';
 
 
 function NavBar() {
@@ -38,11 +35,11 @@ function NavBar() {
           </div>
         </li>
       </ul>
-      <button class="btn btn-outline-success my-2 my-sm-0">
-        <Link to={{pathname: "/login"}}>Login</Link>
+      <button class="btn btn-outline-light my-2 my-sm-0">
+        <Link class="btn btn-outline-success" to={{pathname: "/login"}}>Login</Link>
       </button>
-      <button class="btn btn-outline-success my-2 my-sm-0">
-        <Link to={{pathname: "/register"}}>Register</Link>
+      <button class="btn btn-outline-light my-2 my-sm-0">
+        <Link class="btn btn-outline-success" to={{pathname: "/register"}}>Register</Link>
       </button>
       <li><Logout /></li>
     </div>

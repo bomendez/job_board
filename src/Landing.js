@@ -1,6 +1,6 @@
 import NavBar from "./navbar";
 import './App.css';
-import App from "./PokemonSearch";
+import SearchBar from "./SearchBar";
 import { useEffect } from "react";
 import { Navigate, useNavigate } from "react-router";
 import Register from "./Register";
@@ -25,7 +25,7 @@ function Landing() {
                     <h1>Find your next job</h1>
                     <p class="lead">Enter a keyword to get started.</p>
                     <form class="form-inline my-2 my-lg-0">
-                        <App />
+                        <SearchBar />
                     </form>
                 </main>
 

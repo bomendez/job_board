@@ -1,5 +1,5 @@
 {
-  "name": "hunter_fall2021_cs5610_mod3_hello",
+  "name": "bo_mendez_job_board",
   "proxy": "http://localhost:8000",
   "version": "0.2.0",
   "private": true,
@@ -12,6 +12,7 @@
     "connect-mongo": "^4.6.0",
     "cookie-parser": "^1.4.6",
     "cors": "^2.8.5",
+    "env": "0.0.2",
     "express": "^4.17.1",
     "express-session": "^1.17.2",
     "jsonwebtoken": "^8.5.1",

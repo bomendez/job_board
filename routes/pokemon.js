@@ -29,6 +29,12 @@ router.get('/title/:title', function(request, response) {
     .catch(error => response.status(400).send(error))
 });
 
+router.get('/search/:searchQuery', function(request, response) {
+  return PokemonAccessor.findJobByPartialName(request.params.searchQuery)
+    .then(jobResponse => response.status(200).send(jobResponse))
+    .catch(error => response.status(400).send(error))
+});
+
 
 router.post('/create', auth_middleware, (request, response) => {
   const job = request.body;
@@ -49,4 +55,4 @@ router.get('/about', function(req, res) {
   res.send('Job Board is a place to view and manage jobs');
 });
 
-module.exports = router; // <== Look at our new friend, module.exports!
+module.exports = router;

@@ -4,53 +4,53 @@ import { useParams } from 'react-router';
 import NavBar from './navbar';
 
 export default function() {
-    const pokemonId = useParams().pokemonId;
+    const jobId = useParams().pokemonId;
 
-    function findPokemonDetails() {
+    function findJobDetails() {
 
-        axios.get('/api/pokemon/find/' + pokemonId)
-            .then(response => setPokemon(response.data))
+        axios.get('/api/pokemon/find/' + jobId)
+            .then(response => setJob(response.data))
             .catch(error => console.log("Could not find job"));
 
     }
 
 
-    const [pokemon, setPokemon] = useState(null);
-    useEffect(findPokemonDetails, []);
+    const [job, setJob] = useState(null);
+    useEffect(findJobDetails, []);
 
 
-    const pokemonComponent = pokemon ? 
+    const jobComponent = job ? 
         (<div class="d-flex h-100 text-center text-white bg-dark">
             <div class="d-flex h-100 p-3 mx-auto flex-column">
                 <NavBar />
                 <div>
-                    Job Title: {pokemon.title}
+                    Job Title: {job.title}
                 </div>
                 <div>
-                    Company Name: {pokemon.companyName}
+                    Company Name: {job.companyName}
                 </div>
                 <div>
-                    Location: {pokemon.location}
+                    Location: {job.location}
                 </div>
                 <div>
-                    Description: {pokemon.description}
+                    Description: {job.description}
                 </div>
                 <div>
-                    Email: <a href="{}">{pokemon.email}</a>
+                    Email: <a href="{}">{job.email}</a>
                 </div>
                 <div>
-                    Posting Date: {pokemon.postingDate}
+                    Posting Date: {job.postingDate}
                 </div>
                 <div>
-                    {pokemon.website ? "Company Website: " + pokemon.website : "none"}
+                    {job.website ? "Company Website: " + job.website : "none"}
                 </div>
             </div>
         </div>) :
-        (<div> No Pokemon found </div>);
+        (<div> No Job found </div>);
 
     return (
         <div>
-            {pokemonComponent}
+            {jobComponent}
         </div>
     )
 }

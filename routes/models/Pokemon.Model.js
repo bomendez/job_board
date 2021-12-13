@@ -25,11 +25,16 @@ function findJobByOwner(owner) {
     }).exec();
 }
 
+function findJobByPartialName(partialUserString) {
+    return PokemonModel.find({ "title": { "$regex": partialUserString, "$options": "i" } }).exec();
+}
+
 // Make sure to export a function after you create it!
 module.exports = {
     insertPokemon,
     findPokemonByName,
     getAllPokemon,
     findPokemonById,
-    findJobByOwner
+    findJobByOwner,
+    findJobByPartialName
 };
