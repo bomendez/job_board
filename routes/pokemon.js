@@ -1,3 +1,4 @@
+const { request } = require('express');
 const express = require('express');
 const auth_middleware = require('./auth_middleware');
 const router = express.Router();
@@ -54,5 +55,14 @@ router.post('/create', auth_middleware, (request, response) => {
 router.get('/about', function(req, res) {
   res.send('Job Board is a place to view and manage jobs');
 });
+
+router.post('/favorite', auth_middleware, (request, response) => {
+  owner = request.session.username;
+  jobId = request.body;
+
+  PokemonAccessor.favorite(owner, jobId)
+    .then(jobResponse => response.status(200).send(jobResponse))
+    .catch(error => response.status(400).send(error))
+})
 
 module.exports = router;

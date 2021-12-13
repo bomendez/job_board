@@ -8,8 +8,9 @@ function SearchBar() {
   const [matchingJobs, setMatchingJobs] = useState([]);
   const [errorMsg, setError] = useState(null);
 
-  function onSearchButtonClick() {
-    console.log(formInput);
+  function onSearchButtonClick(e) {
+    e.preventDefault();
+    console.log("clicked");
     
     if (!formInput) {
       setError("You must type in a keyword.");
@@ -57,7 +58,7 @@ function SearchBar() {
       
       }} />
       <button class="btn btn-outline-success my-2 my-sm-0"
-      onClick={onSearchButtonClick}>
+      onClick={(e) => onSearchButtonClick(e)}>
         Search Jobs
       </button>
       {jobListComponent}
