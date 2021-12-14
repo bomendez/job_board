@@ -16,9 +16,16 @@ function findUserByUsername(username) {
     // { username: username }
 }
 
+function insertFavorite(username, jobID) {
+    return UserModel.findOneAndUpdate({ "title": username}, {
+        $addToSet: {favorites: [jobID]}
+    })
+}
+
 // Make sure to export a function after you create it!
 module.exports = {
     insertUser,
     getAllUsers,
     findUserByUsername,
+    insertFavorite
 };

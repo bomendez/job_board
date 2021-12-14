@@ -5,7 +5,7 @@ const UserModel = require('./models/User.Model');
 const jwt = require('jsonwebtoken');
 const auth_middleware = require('./auth_middleware.js')
 
-// Returns all known pokemon
+// Returns all known jobs
 router.get('/findAll', function(request, response) {
     UserModel.getAllUsers()
         .then((userResponse) => {
@@ -42,9 +42,31 @@ router.get('/:username', (request, response) => {
     .catch((error) => response.status(500).send("Issue getting user"))
 })
 
+router.get('/myFavorites', auth_middleware, (request, response) => {
+    username = request.session.username;
+
+    UserModel.findUserByUsername(username)
+        .then((userResponse) => {
+            if (!userResponse) {
+                return response.status(404).send("No user found with that username");
+            }
+            
+            return response.status(200).send(userResponse.favorites)
+        })
+        .catch((error) => console.error(`Something went wrong: ${error}`));
+})
+
+router.post('/favorite', auth_middleware, (request, response) => {
+    owner = request.session.username;
+    jobId = request.body;
+  
+    return UserModel.insertFavorite(owner, jobId)
+      .then(jobResponse => response.status(200).send(jobResponse))
+      .catch(error => response.status(400).send(error))
+})
+
 router.post('/authenticate', function(request, response) {
     let { username, password } = request.body;
-    // password = JSON.stringify(password);
     console.log(password);
     if (!username || !password) {
         return response.status(422).send('Must include both password and username');
@@ -52,14 +74,12 @@ router.post('/authenticate', function(request, response) {
 
     return UserModel.findUserByUsername(username)
         .then((userResponse) => {
-            console.log("enter then")
             if (!userResponse) {
                 return response.status(404).send("No user found with that username");
             }
             if (userResponse.password === password) {
 
                 request.session.username = username;
-                console.log("findUserByUsername successful")
 
                 //return response.cookie('huntersCookie', token, {httpOnly: true})
                 return response.status(200).send({username});

@@ -39,6 +39,7 @@ export default (props) => {
                             })
                         }} type='password' />
                         <button
+                            type="button"
                             onClick={() => {
                                 axios.post('/api/users/authenticate', userData)
                                     .then(response => {
@@ -52,6 +53,7 @@ export default (props) => {
                             }}
                         >Login</button>
                         <button
+                        type="button"
                         onClick={
                             () => {
                                 axios.get('/api/users/whoIsLoggedIn')

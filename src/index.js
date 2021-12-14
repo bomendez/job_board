@@ -10,6 +10,7 @@ import Landing from './Landing';
 import CreateJob from './CreateJob';
 import Login from './Login';
 import MyJobs from './MyJobs';
+import Favorites from './Favorites';
 
 
 
@@ -22,6 +23,7 @@ ReactDOM.render(
       <Route path="/login" element={<Login />} />
       <Route path="/register" element={<Register />} />
       <Route path="/myJobs" element={<MyJobs />} />
+      <Route path="/myFavorites" element={<Favorites />} />
       <Route path="/" element={<Landing />} />
     </Routes>
   </Router>

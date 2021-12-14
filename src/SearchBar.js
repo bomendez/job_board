@@ -31,8 +31,6 @@ function SearchBar() {
     return (
       <>
         <label class="list-group-item d-flex gap-2 text-center bg-secondary">
-                    <p class="flex-shrink-0 text-black">Favorite</p>
-                    <input class="form-check-input flex-shrink-0" type="checkbox" value="" />
                     <div class="ml-4">
                         <Link class="text-left text-light" to={"../pokemon/" + job._id.toString()}>{<h5>{job.title}</h5>}</Link>
                         <small class="d-block text-light text-left">
@@ -57,7 +55,7 @@ function SearchBar() {
         setFormInput(e.target.value)
       
       }} />
-      <button class="btn btn-outline-success my-2 my-sm-0"
+      <button type="button" class="btn btn-outline-success my-2 my-sm-0"
       onClick={(e) => onSearchButtonClick(e)}>
         Search Jobs
       </button>

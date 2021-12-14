@@ -56,13 +56,4 @@ router.get('/about', function(req, res) {
   res.send('Job Board is a place to view and manage jobs');
 });
 
-router.post('/favorite', auth_middleware, (request, response) => {
-  owner = request.session.username;
-  jobId = request.body;
-
-  PokemonAccessor.favorite(owner, jobId)
-    .then(jobResponse => response.status(200).send(jobResponse))
-    .catch(error => response.status(400).send(error))
-})
-
 module.exports = router;

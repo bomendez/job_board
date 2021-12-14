@@ -22,7 +22,7 @@ function NavBar() {
           <a class="nav-link" href="/">Home</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="#">Favorites</a>
+        <Link class="text-muted" to={{pathname: "/myFavorites"}}>Favorites</Link>
         </li>
         <li class="nav-item dropdown">
           <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -35,10 +35,10 @@ function NavBar() {
           </div>
         </li>
       </ul>
-      <button class="btn btn-outline-light my-2 my-sm-0">
+      <button type="button" class="btn btn-outline-light my-2 my-sm-0">
         <Link class="btn btn-outline-success" to={{pathname: "/login"}}>Login</Link>
       </button>
-      <button class="btn btn-outline-light my-2 my-sm-0">
+      <button type="button" class="btn btn-outline-light my-2 my-sm-0">
         <Link class="btn btn-outline-success" to={{pathname: "/register"}}>Register</Link>
       </button>
       <li><Logout /></li>

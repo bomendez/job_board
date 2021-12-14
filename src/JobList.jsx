@@ -14,7 +14,6 @@ export default function JobList() {
             })
             .catch(error => console.error(error));
     }
-
     useEffect(findAllJobs, []);
 
     const jobListComponent = allJobs.map(job => {

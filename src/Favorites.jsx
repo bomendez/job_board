@@ -16,12 +16,12 @@ export default (props) => {
     }
     useEffect(checkLogin, []);
 
-    function getMyJobs() {
-        axios.get('/api/pokemon/myJobs')
+    function getMyFavorites() {
+        axios.get('/api/users/myFavorites')
             .then(response => setMyFavorites(response.data))
             .catch(error => console.log(error));
     }
-    useEffect(getMyJobs, []);
+    useEffect(getMyFavorites, []);
 
     const jobElement = [];
     for (let job of myFavorites) {

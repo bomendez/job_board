@@ -29,12 +29,6 @@ function findJobByPartialName(partialUserString) {
     return PokemonModel.find({ "title": { "$regex": partialUserString, "$options": "i" } }).exec();
 }
 
-function favorite(username, jobID) {
-    return PokemonModel.findOneAndUpdate({ "title": username}, {
-        $addToSet: {favorites: [jobID]}
-    })
-}
-
 // Make sure to export a function after you create it!
 module.exports = {
     insertPokemon,
@@ -43,5 +37,4 @@ module.exports = {
     findPokemonById,
     findJobByOwner,
     findJobByPartialName,
-    favorite
 };

@@ -39,6 +39,7 @@ export default (props) => {
                             })
                         }} type='password' />
                         <button
+                            type="button"
                             onClick={() => {
                                 axios.post('/api/users', userData)
                                     .then(response => {
@@ -49,13 +50,14 @@ export default (props) => {
                             }}
                         >Submit</button>
                         <button
-                        onClick={
-                            () => {
-                                axios.get('/api/users/whoIsLoggedIn')
-                                    .then(response => setLoggedInName(response.data))
-                                    .catch(error => console.log(error));
+                            type="button"
+                            onClick={
+                                () => {
+                                    axios.get('/api/users/whoIsLoggedIn')
+                                        .then(response => setLoggedInName(response.data))
+                                        .catch(error => console.log(error));
+                                }
                             }
-                        }
                         >Who is logged in?</button>
                     </form>
                     {loggedInName && <div>{loggedInName}</div>}

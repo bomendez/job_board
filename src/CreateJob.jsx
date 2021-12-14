@@ -110,7 +110,7 @@ export default (props) => {
                     })
                 }} />
                 
-                <button onClick={handleClick} >Create New Job</button>
+                <button type="button" onClick={handleClick} >Create New Job</button>
                 {jobElement}
             </div>
         </div>
