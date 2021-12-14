@@ -5,6 +5,7 @@ import NavBar from './navbar';
 
 export default function() {
     const jobId = useParams().pokemonId;
+    const [isFavorite, markAsFavorite] = useState(false);
 
     function findJobDetails() {
 
@@ -17,7 +18,11 @@ export default function() {
     const [job, setJob] = useState(null);
     useEffect(findJobDetails, []);
 
-    
+    function addFavorite() {
+        axios.post('/api/users/favorite', jobId)
+            .then(markAsFavorite(true))
+            .catch(error => console.error(error));
+    }
 
 
     const jobComponent = job ? 
@@ -25,8 +30,7 @@ export default function() {
             <div class="d-flex h-100 p-3 mx-auto flex-column">
                 <NavBar />
                 <label class="list-group-item d-flex gap-2 text-center bg-secondary">
-                <p class="flex-shrink-0 text-black">Favorite</p>
-                    <input class="form-check-input flex-shrink-0" type="checkbox" value="" />
+                    <button type="button" class="flex-shrink-0 text-black btn btn-outline-light my-2 my-sm-0" onClick={addFavorite}>Favorite</button>
                     <div class="text-left ml-4">
                         <div>
                             Job Title: {job.title}

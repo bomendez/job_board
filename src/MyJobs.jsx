@@ -28,11 +28,17 @@ export default (props) => {
         jobElement.push(
             <div>
                 <p></p>
-                <Link to={"../pokemon/" + job._id.toString()}>{<h5>{job.title}</h5>}</Link>
-                <ul class="navbar-nav mr-auto">
-                    <li>{job.companyName}</li>
-                    <li>{job.description}</li>
-                </ul>
+                <label class="list-group-item d-flex gap-2 text-center bg-secondary">
+                    <div class="ml-4">
+                        <Link class="text-left text-light" to={"../pokemon/" + job._id.toString()}>{<h5>{job.title}</h5>}</Link>
+                        <small class="d-block text-light text-left">
+                            <ul class="navbar-nav mr-auto">
+                                <li>Company Name: {job.companyName}</li>
+                                <li>Description: {job.description}</li>
+                            </ul>
+                        </small>
+                    </div>
+                </label>
             </div>
         )
     }

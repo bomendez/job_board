@@ -42,13 +42,13 @@ router.get('/:username', (request, response) => {
     .catch((error) => response.status(500).send("Issue getting user"))
 })
 
-router.get('/user/myFavorites', (request, response) => {
-    owner = request.body.username;
-    console.log(owner);
+router.get('/user/myFavorites', auth_middleware, (request, response) => {
+    owner = request.session.username;
+    console.log("myFavorites username", owner);
 
     UserModel.findUserByUsername(owner)
         .then((userResponse) => {
-            console.log(userResponse)
+            console.log("findByUsername response", userResponse)
             if (!userResponse) {
                 return response.status(404).send("No user found with that username");
             }
@@ -59,10 +59,11 @@ router.get('/user/myFavorites', (request, response) => {
 })
 
 router.post('/favorite', auth_middleware, (request, response) => {
-    owner = request.body.username;
+    owner = request.session.username;
+    console.log("request body", Object.keys(request.body)[0]);
     console.log(owner);
-    jobId = request.body.jobId;
-    console.log(jobId);
+    jobId = Object.keys(request.body)[0];
+    console.log("add favorite jobId", jobId);
   
     return UserModel.insertFavorite(owner, jobId)
       .then(jobResponse => response.status(200).send(jobResponse))

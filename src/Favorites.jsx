@@ -6,6 +6,7 @@ import { Link } from 'react-router-dom';
 import NavBar from './navbar';
 
 export default (props) => {
+    const [myFavIDs, setMyFavIDs] = useState([]);
     const [myFavorites, setMyFavorites] = useState([]);
     const navigate = useNavigate;
 
@@ -16,12 +17,36 @@ export default (props) => {
     }
     useEffect(checkLogin, []);
 
+    function convertIDs() {
+        myFavIDs.map( (id) => {
+            console.log("id", id)
+            axios.get('/api/pokemon/find/' + id)
+                .then((idResponse) => 
+                    {setMyFavorites({
+                        ...myFavorites,
+                        idResponse
+                    })
+                    console.log(myFavorites)
+                })
+                .catch(error => console.error(error));
+        })
+    }
+
     function getMyFavorites() {
-        axios.get('/api/users/myFavorites')
-            .then(response => setMyFavorites(response.data))
+        axios.get('/api/users/user/myFavorites')
+            .then(response => {
+                setMyFavIDs(response.data);
+            })
             .catch(error => console.log(error));
     }
     useEffect(getMyFavorites, []);
+    useEffect(() => {
+
+        console.log(myFavIDs);
+        convertIDs();
+        
+        }, [myFavIDs]);
+
 
     const jobElement = [];
     for (let job of myFavorites) {

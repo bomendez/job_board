@@ -20,8 +20,6 @@ export default function JobList() {
         return (<>
         <p></p>
                 <label class="list-group-item d-flex gap-2 text-center bg-secondary">
-                    <p class="flex-shrink-0 text-black">Favorite</p>
-                    <input class="form-check-input flex-shrink-0" type="checkbox" value="" />
                     <div class="ml-4">
                         <Link class="text-left text-light" to={"../pokemon/" + job._id.toString()}>{<h5>{job.title}</h5>}</Link>
                         <small class="d-block text-light text-left">

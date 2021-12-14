@@ -19,6 +19,7 @@ router.get('/myJobs', auth_middleware, function(request, response){
 });
 
 router.get('/find/:pokemonId', function(request, response) {
+  console.log(request)
   return PokemonAccessor.findPokemonById(request.params.pokemonId)
     .then(pokemonResponse => response.status(200).send(pokemonResponse))
     .catch(error => response.status(400).send(error))
