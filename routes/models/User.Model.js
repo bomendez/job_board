@@ -12,12 +12,11 @@ function getAllUsers() {
 }
 
 function findUserByUsername(username) {
-    return UserModel.findOne({username}).exec();
-    // { username: username }
+    return UserModel.findOne({"username" : username}).exec();
 }
 
 function insertFavorite(username, jobID) {
-    return UserModel.findOneAndUpdate({ "title": username}, {
+    return UserModel.findOneAndUpdate({ "username": username}, {
         $addToSet: {favorites: [jobID]}
     })
 }

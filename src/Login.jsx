@@ -48,7 +48,6 @@ export default (props) => {
                                         navigator("/myJobs")
                                     })
                                     .catch(error => {
-                                        console.log("catch entered")
                                         console.log(error)});
                             }}
                         >Login</button>

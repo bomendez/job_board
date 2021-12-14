@@ -16,7 +16,6 @@ export default (props) => {
         website: '',
     });
 
-    // use this to create new component that exists at /myJobs
     function getMyJobs() {
         axios.get('/api/pokemon/myJobs')
             .then(response => setMyJob(response.data))
@@ -36,16 +35,6 @@ export default (props) => {
     for (let job of myJobs) {
         jobElement.push(<div>{job.title} - {job.companyName}</div>)
     }
-
-    // function convertTitletoId() {
-    //     axios.get("/api/pokemon/" + jobData.title)
-    //         .then(response => {
-    //             setMyJob(response.data)
-    //         })
-    //         .catch(error => console.error(error));
-
-    //     return jobData._id.toString();
-    // }
 
     function handleClick() {
         axios.post('/api/pokemon/create', jobData)
