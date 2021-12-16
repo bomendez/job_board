@@ -62,7 +62,7 @@ router.post('/favorite', auth_middleware, (request, response) => {
     owner = request.session.username;
     console.log("request body", Object.keys(request.body)[0]);
     console.log(owner);
-    jobId = Object.keys(request.body)[0];
+    jobId = request.body;
     console.log("add favorite jobId", jobId);
   
     return UserModel.insertFavorite(owner, jobId)

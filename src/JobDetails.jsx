@@ -4,12 +4,12 @@ import { useParams } from 'react-router';
 import NavBar from './navbar';
 
 export default function() {
-    const jobId = useParams().pokemonId;
+    const jobId = useParams().jobId;
     const [isFavorite, markAsFavorite] = useState(false);
 
     function findJobDetails() {
 
-        axios.get('/api/pokemon/find/' + jobId)
+        axios.get('/api/job/find/' + jobId)
             .then(response => setJob(response.data))
             .catch(error => console.log("Could not find job"));
 
@@ -19,7 +19,7 @@ export default function() {
     useEffect(findJobDetails, []);
 
     function addFavorite() {
-        axios.post('/api/users/favorite', jobId)
+        axios.post('/api/users/favorite', job)
             .then(markAsFavorite(true))
             .catch(error => console.error(error));
     }

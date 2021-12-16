@@ -17,7 +17,7 @@ export default (props) => {
     });
 
     function getMyJobs() {
-        axios.get('/api/pokemon/myJobs')
+        axios.get('/api/job/myJobs')
             .then(response => setMyJob(response.data))
             .catch(error => console.log(error));
     }
@@ -37,7 +37,7 @@ export default (props) => {
     }
 
     function handleClick() {
-        axios.post('/api/pokemon/create', jobData)
+        axios.post('/api/job/create', jobData)
             .then(response => {
                 getMyJobs()
                 console.log(response)

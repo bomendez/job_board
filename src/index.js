@@ -18,7 +18,7 @@ ReactDOM.render(
   <Router>
     <Routes>
       <Route path="/list" element={<JobList />} />
-      <Route path="/pokemon/:pokemonId" element={<JobDetails />} />
+      <Route path="/job/:jobId" element={<JobDetails />} />
       <Route path="/create" element={<CreateJob />} />
       <Route path="/login" element={<Login />} />
       <Route path="/register" element={<Register />} />

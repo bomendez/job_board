@@ -17,7 +17,7 @@ function SearchBar() {
       return;
     }
 
-    axios.get('/api/pokemon/search/' + formInput)
+    axios.get('/api/job/search/' + formInput)
       .then(response => setMatchingJobs(response.data))
       .catch(error => setMatchingJobs({
         title: "No matching jobs found"
@@ -32,7 +32,7 @@ function SearchBar() {
       <>
         <label class="list-group-item d-flex gap-2 text-center bg-secondary">
                     <div class="ml-4">
-                        <Link class="text-left text-light" to={"../pokemon/" + job._id.toString()}>{<h5>{job.title}</h5>}</Link>
+                        <Link class="text-left text-light" to={"../job/" + job._id.toString()}>{<h5>{job.title}</h5>}</Link>
                         <small class="d-block text-light text-left">
                             <ul class="navbar-nav mr-auto">
                                 <li>Company Name: {job.companyName}</li>
