@@ -22,11 +22,10 @@ export default (props) => {
             console.log("id", id)
             axios.get('/api/pokemon/find/' + id)
                 .then((idResponse) => 
-                    {setMyFavorites({
+                    {setMyFavorites([
                         ...myFavorites,
                         idResponse
-                    })
-                    console.log(myFavorites)
+                    ])
                 })
                 .catch(error => console.error(error));
         })
@@ -43,10 +42,20 @@ export default (props) => {
     useEffect(() => {
 
         console.log(myFavIDs);
-        convertIDs();
+        // convertIDs();
         
         }, [myFavIDs]);
-
+    
+    const tempJobElement = [];
+    for (let ID of myFavIDs) {
+        tempJobElement.push(
+            <label class="list-group-item d-flex gap-2 text-center bg-secondary">
+                <div class="ml-4">
+                    <Link class="text-left text-light" to={"../pokemon/" + ID.toString()}>{<h5>Link to Job #{ID}</h5>}</Link>
+                </div>
+            </label>
+        )
+    }
 
     const jobElement = [];
     for (let job of myFavorites) {
@@ -67,7 +76,8 @@ export default (props) => {
             <div class="d-flex h-100 p-3 mx-auto flex-column">
             <NavBar />
             <h1>Your Posted Jobs:</h1>
-            {jobElement}
+            {/* {jobElement} */}
+            {tempJobElement}
             </div>
         </div>
     )
